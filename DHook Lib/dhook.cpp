@@ -186,6 +186,7 @@ BOOL DHOOK_unhook()
 	bReturnVal = TRUE;
 
 lbl_cleanup:
+	SAFE_FREE(pgHookData);
 	return bReturnVal;
 }
 
