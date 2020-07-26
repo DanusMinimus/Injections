@@ -77,7 +77,8 @@ BOOL DHOOK_patchAPI(IN LPVOID lpFuncAddr, IN LPVOID lpTramp, IN LPBYTE * ppbByte
 	hProcessHandle = GetCurrentProcess();
 
 	IS_ZERO("GetCurrentProcess", hProcessHandle, lbl_cleanup);
-
+	
+	/*Flush instruction cache since we changed the instructions inside the library*/
 	bGenericBool = FlushInstructionCache(hProcessHandle, lpFuncAddr, PATCH_JMP_SIZE);
 
 	IS_ZERO("FlushInstructionCache", bGenericBool, lbl_cleanup);
